@@ -92,6 +92,7 @@ public class Lab7Vedika extends Application {
         FadeTransition fade = new FadeTransition(Duration.seconds(3), ellipse);
         fade.setFromValue(1.0);
         fade.setToValue(0.2);
+        fade.setDelay(Duration.seconds(1));
         
         // Scale
         ScaleTransition scale = new ScaleTransition(Duration.seconds(3), ellipse);
@@ -99,14 +100,17 @@ public class Lab7Vedika extends Application {
         scale.setFromY(1.0);
         scale.setToX(1.5);
         scale.setToY(1.5);
+        scale.setDelay(Duration.seconds(1));
 
         // Rotate
         RotateTransition rotate = new RotateTransition(Duration.seconds(3), ellipse);
         rotate.setByAngle(360);
+        rotate.setDelay(Duration.seconds(1));
 
         // Translate upward
         TranslateTransition translate = new TranslateTransition(Duration.seconds(3), ellipse);
         translate.setByY(-100);
+        translate.setDelay(Duration.seconds(1));
         
         
         // Combine all into a SequentialTransition
