@@ -110,6 +110,16 @@ public class Lab7Vedika extends Application {
         startBtn.setOnAction(e -> {
             pt.play();
         });
+        
+        resetBtn.setOnAction( e -> {
+            pt.stop();
+            circle.setCenterX(125);
+            circle.setCenterY(100);
+        });
+        
+           exitBtn.setOnAction (e -> {
+            stage.close();
+        });
 
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
