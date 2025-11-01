@@ -5,6 +5,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -26,6 +27,13 @@ import javafx.util.Duration;
  * @author 6303129
  */
 public class Lab7Vedika extends Application {
+    
+    public Circle circleA; 
+    public Circle circleB; 
+    public Ellipse ellipse; 
+    public SequentialTransition seqA; 
+    public TranslateTransition moveB; 
+    public FadeTransition fadeTransition; 
 
     /**
      * @param args the command line arguments
