@@ -107,8 +107,12 @@ public class Lab7Vedika extends Application {
         // Translate upward
         TranslateTransition translate = new TranslateTransition(Duration.seconds(3), ellipse);
         translate.setByY(-100);
-
-        //SequentialTransition seq = new Sequiential 
+        
+        
+        // Combine all into a SequentialTransition
+        seqB = new SequentialTransition(fade, scale, rotate, translate);
+        seqB.setCycleCount(SequentialTransition.INDEFINITE);
+        seqB.setAutoReverse(true);
         
         //Bottom part 
         HBox buttonBox  = new HBox(20);
