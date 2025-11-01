@@ -96,7 +96,12 @@ public class Lab7Vedika extends Application {
         fadeB.setFromValue(1.0);
         fadeB.setToValue(0.2);
         
-        
+        // Scale
+        scaleB = new ScaleTransition(Duration.seconds(3), ellipseB);
+        scaleB.setFromX(1.0);
+        scaleB.setFromY(1.0);
+        scaleB.setToX(1.5);
+        scaleB.setToY(1.5);
 
         
         // Scale Transition for ellipse (Object B)
@@ -175,7 +180,7 @@ public class Lab7Vedika extends Application {
             stage.close();
         });
            
-        fadeEllipse.setOnFinished(e -> {
+        fadeB.setOnFinished(e -> {
          scaleEllipse.play();
          });
         
