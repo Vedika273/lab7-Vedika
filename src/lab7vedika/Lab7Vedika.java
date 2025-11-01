@@ -66,13 +66,13 @@ public class Lab7Vedika extends Application {
         
         //Path transition
         pathTransitionA = new PathTransition();
-        pathTransitionA.setDuration(Duration.seconds(4));
+        pathTransitionA.setDuration(Duration.seconds(6));
         pathTransitionA.setPath(rectanglePath);
         pathTransitionA.setNode(circleA);
         pathTransitionA.setOrientation(PathTransition.OrientationType.
         ORTHOGONAL_TO_TANGENT);
         pathTransitionA.setCycleCount(Timeline.INDEFINITE);
-        pathTransitionA.setAutoReverse(true);
+        pathTransitionA.setAutoReverse(false);
         
         //circle.setOnMousePressed(e -> pathTransitionA.pause());
         //circle.setOnMouseReleased(e -> pathTransitionA.play());
