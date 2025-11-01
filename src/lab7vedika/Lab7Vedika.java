@@ -48,28 +48,33 @@ public class Lab7Vedika extends Application {
        BorderPane root = new BorderPane();
        
        //Top part animations 
-       Pane pane = new Pane();
-       pane.setStyle("-fx-background-color : lightgray");
+       Pane topPane = new Pane();
+       topPane.setPrefHeight(400);
+       topPane.setStyle("-fx-background-color : lightblue");
         
+       
         //animation 1
-        Rectangle rectangle = new Rectangle(100, 100, 300, 300);
-        rectangle.setFill(Color.WHITE);
-        rectangle.setStroke(Color.BLACK);
+        Rectangle rectanglePath = new Rectangle(100, 100, 300, 300);
+        rectanglePath.setFill(Color.WHITE);
+        rectanglePath.setStroke(Color.BLACK);
+        topPane.getChildren().add(rectanglePath);
+        
         
         //object A
-        Circle circle = new Circle(125, 100, 50);
-        circle.setFill(Color.ORANGE);
-        circle.setStroke(Color.BLACK);
+        Circle circle = new Circle(20, Color.RED);
+        circleA.setCenterX(100);
+        circleA.setCenterY(100);
+        topPane.getChildren().add(circleA);
         
         //Path transition
         PathTransition pt = new PathTransition();
         pt.setDuration(Duration.millis(4000));
-        pt.setPath(rectangle);
-        pt.setNode(circle);
+        pt.setPath(rectanglePath);
+        pt.setNode(circleA);
         pt.setOrientation(PathTransition.OrientationType.
         ORTHOGONAL_TO_TANGENT);
         pt.setCycleCount(Timeline.INDEFINITE);
-        pt.setAutoReverse(false);
+        pt.setAutoReverse(true);
         
         //circle.setOnMousePressed(e -> pt.pause());
         //circle.setOnMouseReleased(e -> pt.play());
@@ -81,8 +86,9 @@ public class Lab7Vedika extends Application {
         ellipse.setCenterY(250);
         ellipse.setRadiusX(60);
         ellipse.setRadiusY(20);
-        ellipse.setFill(Color.RED);
+        ellipse.setFill(Color.ORANGE);
         ellipse.setStroke(Color.BLACK);
+        topPane.getChildren().add(ellipse);
         
         // Fade Transition for ellipse (Object B)
         FadeTransition fadeEllipse = new FadeTransition(Duration.seconds(3), ellipse);
@@ -165,7 +171,7 @@ public class Lab7Vedika extends Application {
             pt.stop();
             circle.setCenterX(125);
             circle.setCenterY(100);
-            rectangle.setOpacity(1.0);
+            rectanglePath.setOpacity(1.0);
         });
         
            exitBtn.setOnAction (e -> {
@@ -187,7 +193,7 @@ public class Lab7Vedika extends Application {
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
         // Add top and bottom to the BorderPane
-        root.setTop(pane);
+        root.setTop(topPane);
         root.setBottom(buttonBox);
         
         Scene scene = new Scene(root, 600, 550);
