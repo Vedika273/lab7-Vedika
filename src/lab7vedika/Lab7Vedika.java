@@ -2,6 +2,7 @@ package lab7vedika;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
@@ -66,17 +67,15 @@ public class Lab7Vedika extends Application {
         
         //Path transition
         pathTransitionA = new PathTransition();
-        pathTransitionA.setDuration(Duration.seconds(6));
+        pathTransitionA.setDuration(Duration.seconds(8));
         pathTransitionA.setPath(rectanglePath);
+        pathTransitionA.setRate(-1); //go backward along the path
         pathTransitionA.setNode(circleA);
         pathTransitionA.setOrientation(PathTransition.OrientationType.
         ORTHOGONAL_TO_TANGENT);
         pathTransitionA.setCycleCount(Timeline.INDEFINITE);
         pathTransitionA.setAutoReverse(false);
         
-        //circle.setOnMousePressed(e -> pathTransitionA.pause());
-        //circle.setOnMouseReleased(e -> pathTransitionA.play());
-    
         
         //create object B 
         ellipse = new Ellipse();
@@ -89,28 +88,29 @@ public class Lab7Vedika extends Application {
         topPane.getChildren().add(ellipse);
         
          // Fade
-        FadeTransition fade = new FadeTransition(Duration.seconds(3), ellipse);
+        FadeTransition fade = new FadeTransition(Duration.seconds(2), ellipse);
         fade.setFromValue(1.0);
         fade.setToValue(0.2);
-        fade.setDelay(Duration.seconds(1));
+        fade.setDelay(Duration.seconds(0.1));
         
         // Scale
-        ScaleTransition scale = new ScaleTransition(Duration.seconds(3), ellipse);
+        ScaleTransition scale = new ScaleTransition(Duration.seconds(2), ellipse);
         scale.setFromX(1.0);
         scale.setFromY(1.0);
         scale.setToX(1.5);
         scale.setToY(1.5);
-        scale.setDelay(Duration.seconds(1));
+        scale.setDelay(Duration.seconds(0.1));
 
         // Rotate
-        RotateTransition rotate = new RotateTransition(Duration.seconds(3), ellipse);
+        RotateTransition rotate = new RotateTransition(Duration.seconds(2), ellipse);
         rotate.setByAngle(360);
-        rotate.setDelay(Duration.seconds(1));
-
+        rotate.setDelay(Duration.seconds(0.1));
+        
+        
         // Translate upward
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(3), ellipse);
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(2), ellipse);
         translate.setByY(-100);
-        translate.setDelay(Duration.seconds(1));
+        translate.setDelay(Duration.seconds(0.1));
         
         
         // Combine all into a SequentialTransition
