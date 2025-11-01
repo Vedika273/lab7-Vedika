@@ -59,14 +59,14 @@ public class Lab7Vedika extends Application {
         
         
         //object A
-        Circle circle = new Circle(20, Color.RED);
+        circleA = new Circle(20, Color.RED);
         circleA.setCenterX(100);
         circleA.setCenterY(100);
         topPane.getChildren().add(circleA);
         
         //Path transition
         pathTransitionA = new PathTransition();
-        pathTransitionA.setDuration(Duration.second(4));
+        pathTransitionA.setDuration(Duration.seconds(4));
         pathTransitionA.setPath(rectanglePath);
         pathTransitionA.setNode(circleA);
         pathTransitionA.setOrientation(PathTransition.OrientationType.
@@ -79,7 +79,7 @@ public class Lab7Vedika extends Application {
     
         
         //create object B 
-        Ellipse ellipse = new Ellipse();
+        ellipse = new Ellipse();
         ellipse.setCenterX(250);
         ellipse.setCenterY(250);
         ellipse.setRadiusX(60);
@@ -131,16 +131,24 @@ public class Lab7Vedika extends Application {
         
         //the start button controls both animations 
         startBtn.setOnAction(e -> {
-            pathTransitionA.play(); //object A fade aniamation 
-            fadeB.play(); //object B fade aniamation 
+            pathTransitionA.play(); 
+            seqB.play(); 
         });
         
         //reset button stops everything and resaets the circle positions
         resetBtn.setOnAction(e -> {
             pathTransitionA.stop();
-            circle.setCenterX(125);
-            circle.setCenterY(100);
-            rectanglePath.setOpacity(1.0);
+            
+            circleA.setTranslateX(0);
+            circleA.setTranslateY(0);
+            circleA.setRotate(0);
+
+            seqB.stop();
+            ellipse.setOpacity(1.0);
+            ellipse.setScaleX(1.0);
+            ellipse.setScaleY(1.0);
+            ellipse.setRotate(0);
+            ellipse.setTranslateY(0);
         });
         
            exitBtn.setOnAction (e -> {
