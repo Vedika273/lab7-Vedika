@@ -97,7 +97,14 @@ public class Lab7Vedika extends Application {
         rotateEllipse.setByAngle(360); // full rotation
         rotateEllipse.setCycleCount(1);
         rotateEllipse.setAutoReverse(false);
+        
+        // Translate Transition for ellipse (Object B)
+        TranslateTransition moveEllipse = new TranslateTransition(Duration.seconds(3), ellipse);
+        moveEllipse.setByY(-100); // Move ellipse upward by 100 pixels
+        moveEllipse.setCycleCount(1);
+        moveEllipse.setAutoReverse(false);
 
+        
 
 
         
@@ -160,7 +167,14 @@ public class Lab7Vedika extends Application {
         fadeEllipse.setOnFinished(e -> {
          scaleEllipse.play();
          });
-
+        
+        scaleEllipse.setOnFinished(e -> {
+          rotateEllipse.play();
+          });
+        
+        rotateEllipse.setOnFinished(e -> {
+          moveEllipse.play();
+          });
 
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
