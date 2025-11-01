@@ -3,6 +3,7 @@ package lab7vedika;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -80,6 +81,16 @@ public class Lab7Vedika extends Application {
         fadeEllipse.setToValue(0.1);   // almost invisible
         fadeEllipse.setCycleCount(1);  // only once (as requested in assignment)
         fadeEllipse.setAutoReverse(false);
+        
+        // Scale Transition for ellipse (Object B)
+        ScaleTransition scaleEllipse = new ScaleTransition(Duration.seconds(3), ellipse);
+        scaleEllipse.setFromX(1.0);
+        scaleEllipse.setFromY(1.0);
+        scaleEllipse.setToX(1.5); // grow bigger
+        scaleEllipse.setToY(1.5);
+        scaleEllipse.setCycleCount(1);
+        scaleEllipse.setAutoReverse(false);
+
 
         
         pane.getChildren().addAll(rectangle, circle, ellipse);
@@ -129,7 +140,6 @@ public class Lab7Vedika extends Application {
         //reset button stops everything and resaets the circle positions
         resetBtn.setOnAction( e -> {
             pt.stop();
-            fade.stop();
             circle.setCenterX(125);
             circle.setCenterY(100);
             rectangle.setOpacity(1.0);
