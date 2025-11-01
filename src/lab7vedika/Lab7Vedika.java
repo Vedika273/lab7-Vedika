@@ -97,7 +97,7 @@ public class Lab7Vedika extends Application {
         fadeB.setToValue(0.2);
         
         // Scale
-        scaleB = new ScaleTransition(Duration.seconds(3), ellipseB);
+        scaleB = new ScaleTransition(Duration.seconds(3), ellipse);
         scaleB.setFromX(1.0);
         scaleB.setFromY(1.0);
         scaleB.setToX(1.5);
@@ -113,26 +113,15 @@ public class Lab7Vedika extends Application {
         scaleEllipse.setCycleCount(1);
         scaleEllipse.setAutoReverse(false);
         
-        // Rotate Transition for ellipse (Object B)
-        RotateTransition rotateEllipse = new RotateTransition(Duration.seconds(3), ellipse);
-        rotateEllipse.setByAngle(360); // full rotation
-        rotateEllipse.setCycleCount(1);
-        rotateEllipse.setAutoReverse(false);
-        
-        // Translate Transition for ellipse (Object B)
-        TranslateTransition moveEllipse = new TranslateTransition(Duration.seconds(3), ellipse);
-        moveEllipse.setByY(-100); // Move ellipse upward by 100 pixels
-        moveEllipse.setCycleCount(1);
-        moveEllipse.setAutoReverse(false);
+        // Rotate
+        rotateB = new RotateTransition(Duration.seconds(3), ellipseB);
+        rotateB.setByAngle(360);
 
+        // Translate upward
+        translateB = new TranslateTransition(Duration.seconds(3), ellipseB);
+        translateB.setByY(-100);
+ 
         
-//        ellipse.setFill(Color.RED); 
-//        ellipse.setStroke(Color.BLACK);
-//        ellipse.centerXProperty().bind(pane.widthProperty().divide(2)); 
-//        ellipse.centerYProperty().bind(pane.heightProperty().divide(2)); 
-//        ellipse.radiusXProperty().bind(pane.widthProperty().multiply(0.4)); 
-//        ellipse.radiusYProperty().bind(pane.heightProperty().multiply(0.4)); 
-//        pane.getChildren().add(ellipse);
         // Apply a fade transition to ellipse
 //        FadeTransition ft = new FadeTransition(Duration.millis(3000), ellipse); 
 //        ft.setFromValue(1.0);
@@ -179,18 +168,7 @@ public class Lab7Vedika extends Application {
            exitBtn.setOnAction (e -> {
             stage.close();
         });
-           
-        fadeB.setOnFinished(e -> {
-         scaleEllipse.play();
-         });
-        
-        scaleEllipse.setOnFinished(e -> {
-          rotateEllipse.play();
-          });
-        
-        rotateEllipse.setOnFinished(e -> {
-          moveEllipse.play();
-          });
+          
 
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
