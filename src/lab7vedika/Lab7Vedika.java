@@ -3,6 +3,7 @@ package lab7vedika;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -90,6 +91,13 @@ public class Lab7Vedika extends Application {
         scaleEllipse.setToY(1.5);
         scaleEllipse.setCycleCount(1);
         scaleEllipse.setAutoReverse(false);
+        
+        // Rotate Transition for ellipse (Object B)
+        RotateTransition rotateEllipse = new RotateTransition(Duration.seconds(3), ellipse);
+        rotateEllipse.setByAngle(360); // full rotation
+        rotateEllipse.setCycleCount(1);
+        rotateEllipse.setAutoReverse(false);
+
 
 
         
@@ -148,6 +156,11 @@ public class Lab7Vedika extends Application {
            exitBtn.setOnAction (e -> {
             stage.close();
         });
+           
+        fadeEllipse.setOnFinished(e -> {
+         scaleEllipse.play();
+         });
+
 
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
