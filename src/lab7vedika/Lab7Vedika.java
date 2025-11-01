@@ -51,7 +51,7 @@ public class Lab7Vedika extends Application {
         circle.setFill(Color.ORANGE);
         circle.setStroke(Color.BLACK);
         
-        //fade transtion 
+        
         // Fade Transition for the rectangle
         FadeTransition fade = new FadeTransition();
         fade.setNode(rectangle);
@@ -117,15 +117,19 @@ public class Lab7Vedika extends Application {
         Button exitBtn = new Button("Exit");
         
         
-        //listeners for the buttons
+        //the start button controls both animations 
         startBtn.setOnAction(e -> {
             pt.play();
+            fade.play();
         });
         
+        //reset button stops everything and resaets the circle positions
         resetBtn.setOnAction( e -> {
             pt.stop();
+            fade.stop();
             circle.setCenterX(125);
             circle.setCenterY(100);
+            rectangle.setOpacity(1.0);
         });
         
            exitBtn.setOnAction (e -> {
