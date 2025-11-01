@@ -51,16 +51,6 @@ public class Lab7Vedika extends Application {
         circle.setFill(Color.ORANGE);
         circle.setStroke(Color.BLACK);
         
-        
-        // Fade Transition for the rectangle
-        FadeTransition fade = new FadeTransition();
-        fade.setNode(rectangle);
-        fade.setDuration(Duration.seconds(3));
-        fade.setFromValue(1.0);   // fully visible
-        fade.setToValue(0.2);     // fade almost out
-        fade.setCycleCount(Timeline.INDEFINITE);
-        fade.setAutoReverse(true);
-        
         //Path transition
         PathTransition pt = new PathTransition();
         pt.setDuration(Duration.millis(4000));
@@ -83,6 +73,14 @@ public class Lab7Vedika extends Application {
         ellipse.setRadiusY(20);
         ellipse.setFill(Color.RED);
         ellipse.setStroke(Color.BLACK);
+        
+        // Fade Transition for ellipse (Object B)
+        FadeTransition fadeEllipse = new FadeTransition(Duration.seconds(3), ellipse);
+        fadeEllipse.setFromValue(1.0); // fully visible
+        fadeEllipse.setToValue(0.1);   // almost invisible
+        fadeEllipse.setCycleCount(1);  // only once (as requested in assignment)
+        fadeEllipse.setAutoReverse(false);
+
         
         pane.getChildren().addAll(rectangle, circle, ellipse);
         
@@ -124,8 +122,8 @@ public class Lab7Vedika extends Application {
         
         //the start button controls both animations 
         startBtn.setOnAction(e -> {
-            pt.play();
-            fade.play();
+            pt.play(); //object A fade aniamation 
+            fadeEllipse.play(); //object B fade aniamation 
         });
         
         //reset button stops everything and resaets the circle positions
