@@ -149,6 +149,10 @@ public class Lab7Vedika extends Application {
             ellipse.setScaleY(1.0);
             ellipse.setRotate(0);
             ellipse.setTranslateY(0);
+            
+              // Start animations again
+               pathTransitionA.play();
+               seqB.play();
         });
         
            exitBtn.setOnAction (e -> {
