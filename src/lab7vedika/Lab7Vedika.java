@@ -39,7 +39,7 @@ public class Lab7Vedika extends Application {
        
        //Top part animations 
        Pane pane = new Pane();
-       pane.setStyle("-fx-backgroud-color : lightgray");
+       pane.setStyle("-fx-background-color : lightgray");
         
         //animation 1
         Rectangle rectangle = new Rectangle(100, 100, 300, 300);
@@ -50,6 +50,17 @@ public class Lab7Vedika extends Application {
         Circle circle = new Circle(125, 100, 50);
         circle.setFill(Color.ORANGE);
         circle.setStroke(Color.BLACK);
+        
+        //fade transtion 
+        // Fade Transition for the rectangle
+        FadeTransition fade = new FadeTransition();
+        fade.setNode(rectangle);
+        fade.setDuration(Duration.seconds(3));
+        fade.setFromValue(1.0);   // fully visible
+        fade.setToValue(0.2);     // fade almost out
+        fade.setCycleCount(Timeline.INDEFINITE);
+        fade.setAutoReverse(true);
+        fade.play();
         
         //Path transition
         PathTransition pt = new PathTransition();
@@ -127,7 +138,7 @@ public class Lab7Vedika extends Application {
         root.setTop(pane);
         root.setBottom(buttonBox);
         
-        Scene scene = new Scene(pane, 600, 550);
+        Scene scene = new Scene(root, 600, 550);
         stage.setTitle("PathTransitionDemo");
         stage.setScene(scene);
         stage.show();
