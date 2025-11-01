@@ -1,8 +1,7 @@
 package lab7vedika;
 
-import javafx.animation.Animation;
+//https://github.com/Vedika273/lab7-Vedika
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
@@ -11,7 +10,6 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -44,14 +42,13 @@ public class Lab7Vedika extends Application {
     @Override
     public void start(Stage stage) {
         
-       BorderPane root = new BorderPane();
+        BorderPane root = new BorderPane();
        
-       //Top part animations 
-       Pane topPane = new Pane();
-       topPane.setPrefHeight(400);
-       topPane.setStyle("-fx-background-color : lightblue");
+        //Top part animations 
+        Pane topPane = new Pane();
+        topPane.setPrefHeight(400);
+        topPane.setStyle("-fx-background-color : lightblue");
         
-       
         //rectangle path for animation 1
         Rectangle rectanglePath = new Rectangle(100, 100, 300, 300);
         rectanglePath.setFill(Color.WHITE);
@@ -60,21 +57,21 @@ public class Lab7Vedika extends Application {
         
         
         //object A
-        circleA = new Circle(20, Color.RED);
+        circleA = new Circle(20, Color.RED); //circle of radius of 20
         circleA.setCenterX(100);
-        circleA.setCenterY(100);
+        circleA.setCenterY(100);  //placed at the top-left corner of the rectangle path
         topPane.getChildren().add(circleA);
         
         //Path transition
         pathTransitionA = new PathTransition();
         pathTransitionA.setDuration(Duration.seconds(8));
         pathTransitionA.setPath(rectanglePath);
-        pathTransitionA.setRate(-1); //go backward along the path
+        pathTransitionA.setRate(-1); //move backward along the path
         pathTransitionA.setNode(circleA);
         pathTransitionA.setOrientation(PathTransition.OrientationType.
-        ORTHOGONAL_TO_TANGENT);
+        ORTHOGONAL_TO_TANGENT); //rotates so it's always perpendiucular (orthogonal) to the path's tangent
         pathTransitionA.setCycleCount(Timeline.INDEFINITE);
-        pathTransitionA.setAutoReverse(false);
+        pathTransitionA.setAutoReverse(false); //continues in the same direction 
         
         
         //create object B 
@@ -93,7 +90,7 @@ public class Lab7Vedika extends Application {
         fade.setToValue(0.2);
         fade.setDelay(Duration.seconds(0.1));
         
-        // Scale
+        // Scale, grows 1.5x bigger
         ScaleTransition scale = new ScaleTransition(Duration.seconds(2), ellipse);
         scale.setFromX(1.0);
         scale.setFromY(1.0);
@@ -116,10 +113,11 @@ public class Lab7Vedika extends Application {
         // Combine all into a SequentialTransition
         seqB = new SequentialTransition(fade, scale, rotate, translate);
         seqB.setCycleCount(SequentialTransition.INDEFINITE);
-        seqB.setAutoReverse(true);
+        seqB.setDelay(Duration.seconds(0.2));
+        seqB.setAutoReverse(false);
         
         //Bottom part 
-        HBox buttonBox  = new HBox(20);
+        HBox buttonBox  = new HBox(20); //20 pixel spacing 
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setStyle("-fx-padding :40;");
         
@@ -162,8 +160,7 @@ public class Lab7Vedika extends Application {
            exitBtn.setOnAction (e -> {
             stage.close();
         });
-          
-
+         
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
         // Add top and bottom to the BorderPane
@@ -173,7 +170,6 @@ public class Lab7Vedika extends Application {
         Scene scene = new Scene(root, 600, 550);
         stage.setTitle("PathTransitionDemo");
         stage.setScene(scene);
-        stage.show();
-        
- }
+        stage.show();      
+  }
 }
