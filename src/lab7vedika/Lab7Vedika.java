@@ -39,6 +39,7 @@ public class Lab7Vedika extends Application {
        
        //Top part animations 
        Pane pane = new Pane();
+       pane.setStyle("-fx-backgroud-color : lightgray");
         
         //animation 1
         Rectangle rectangle = new Rectangle(100, 100, 300, 300);
@@ -59,7 +60,6 @@ public class Lab7Vedika extends Application {
         ORTHOGONAL_TO_TANGENT);
         pt.setCycleCount(Timeline.INDEFINITE);
         pt.setAutoReverse(false);
-        pt.play(); // Start animation
         
         //circle.setOnMousePressed(e -> pt.pause());
         //circle.setOnMouseReleased(e -> pt.play());
@@ -104,6 +104,12 @@ public class Lab7Vedika extends Application {
         Button startBtn = new Button("Start");
         Button resetBtn = new Button("Reset");
         Button exitBtn = new Button("Exit");
+        
+        
+        //listeners for the buttons
+        startBtn.setOnAction(e -> {
+            pt.play();
+        });
 
         buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
 
