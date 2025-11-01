@@ -28,13 +28,14 @@ import javafx.util.Duration;
  */
 public class Lab7Vedika extends Application {
     
-    public Circle circleA; 
-    public Circle circleB; 
+    public Circle circleA;  
     public Ellipse ellipse; 
-    public SequentialTransition seqA; 
-    public TranslateTransition moveB; 
-    public FadeTransition fadeTransition; 
-
+    public PathTransition pathTransitionA;
+    public FadeTransition fadeB;
+    public ScaleTransition scaleB;
+    public RotateTransition rotateB;
+    public TranslateTransition translateB;
+    
     /**
      * @param args the command line arguments
      */
@@ -90,12 +91,13 @@ public class Lab7Vedika extends Application {
         ellipse.setStroke(Color.BLACK);
         topPane.getChildren().add(ellipse);
         
-        // Fade Transition for ellipse (Object B)
-        FadeTransition fadeEllipse = new FadeTransition(Duration.seconds(3), ellipse);
-        fadeEllipse.setFromValue(1.0); // fully visible
-        fadeEllipse.setToValue(0.1);   // almost invisible
-        fadeEllipse.setCycleCount(1);  // only once (as requested in assignment)
-        fadeEllipse.setAutoReverse(false);
+         // Fade
+        fadeB = new FadeTransition(Duration.seconds(3), ellipse);
+        fadeB.setFromValue(1.0);
+        fadeB.setToValue(0.2);
+        
+        
+
         
         // Scale Transition for ellipse (Object B)
         ScaleTransition scaleEllipse = new ScaleTransition(Duration.seconds(3), ellipse);
@@ -118,11 +120,6 @@ public class Lab7Vedika extends Application {
         moveEllipse.setCycleCount(1);
         moveEllipse.setAutoReverse(false);
 
-        
-
-
-        
-        pane.getChildren().addAll(rectangle, circle, ellipse);
         
 //        ellipse.setFill(Color.RED); 
 //        ellipse.setStroke(Color.BLACK);
@@ -148,7 +145,7 @@ public class Lab7Vedika extends Application {
         //Bottom part 
         HBox buttonBox  = new HBox(20);
         buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.setStyle("-fx-padding :25;");
+        buttonBox.setStyle("-fx-padding :40;");
         
         Button startBtn = new Button("Start");
         Button resetBtn = new Button("Reset");
@@ -163,7 +160,7 @@ public class Lab7Vedika extends Application {
         //the start button controls both animations 
         startBtn.setOnAction(e -> {
             pt.play(); //object A fade aniamation 
-            fadeEllipse.play(); //object B fade aniamation 
+            fadeB.play(); //object B fade aniamation 
         });
         
         //reset button stops everything and resaets the circle positions
