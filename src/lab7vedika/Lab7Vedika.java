@@ -6,8 +6,11 @@ import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -32,16 +35,22 @@ public class Lab7Vedika extends Application {
     @Override
     public void start(Stage stage) {
         
-        Pane pane= new Pane();
+       BorderPane root = new BorderPane();
+       
+       //Top part animations 
+       Pane pane = new Pane();
         
         //animation 1
         Rectangle rectangle = new Rectangle(100, 100, 300, 300);
         rectangle.setFill(Color.WHITE);
         rectangle.setStroke(Color.BLACK);
+        
+        //object A
         Circle circle = new Circle(125, 100, 50);
         circle.setFill(Color.ORANGE);
         circle.setStroke(Color.BLACK);
-        // Create a path transition
+        
+        //Path transition
         PathTransition pt = new PathTransition();
         pt.setDuration(Duration.millis(4000));
         pt.setPath(rectangle);
@@ -51,8 +60,9 @@ public class Lab7Vedika extends Application {
         pt.setCycleCount(Timeline.INDEFINITE);
         pt.setAutoReverse(false);
         pt.play(); // Start animation
-        circle.setOnMousePressed(e -> pt.pause());
-        circle.setOnMouseReleased(e -> pt.play());
+        
+        //circle.setOnMousePressed(e -> pt.pause());
+        //circle.setOnMouseReleased(e -> pt.play());
     
         
         //create object B 
@@ -61,34 +71,50 @@ public class Lab7Vedika extends Application {
         ellipse.setCenterY(250);
         ellipse.setRadiusX(60);
         ellipse.setRadiusY(20);
-        ellipse.setFill(null);
+        ellipse.setFill(Color.RED);
         ellipse.setStroke(Color.BLACK);
         
-        ellipse.setFill(Color.RED); 
-        ellipse.setStroke(Color.BLACK);
-        ellipse.centerXProperty().bind(pane.widthProperty().divide(2)); 
-        ellipse.centerYProperty().bind(pane.heightProperty().divide(2)); 
-        ellipse.radiusXProperty().bind(pane.widthProperty().multiply(0.4)); 
-        ellipse.radiusYProperty().bind(pane.heightProperty().multiply(0.4)); 
-        pane.getChildren().add(ellipse);
+        pane.getChildren().addAll(rectangle, circle, ellipse);
+        
+//        ellipse.setFill(Color.RED); 
+//        ellipse.setStroke(Color.BLACK);
+//        ellipse.centerXProperty().bind(pane.widthProperty().divide(2)); 
+//        ellipse.centerYProperty().bind(pane.heightProperty().divide(2)); 
+//        ellipse.radiusXProperty().bind(pane.widthProperty().multiply(0.4)); 
+//        ellipse.radiusYProperty().bind(pane.heightProperty().multiply(0.4)); 
+//        pane.getChildren().add(ellipse);
         // Apply a fade transition to ellipse
-        FadeTransition ft = new FadeTransition(Duration.millis(3000), ellipse); 
-        ft.setFromValue(1.0);
-        ft.setToValue(0.1); 
-        ft.setCycleCount(Timeline.INDEFINITE); 
-        ft.setAutoReverse(true);
-        ft.play(); // Start animation
-        // Control animation
-        ellipse.setOnMousePressed(e -> ft.pause()); 
-        ellipse.setOnMouseReleased(e -> ft.play());
+//        FadeTransition ft = new FadeTransition(Duration.millis(3000), ellipse); 
+//        ft.setFromValue(1.0);
+//        ft.setToValue(0.1); 
+//        ft.setCycleCount(Timeline.INDEFINITE); 
+//        ft.setAutoReverse(true);
+//        ft.play(); // Start animation
+//        // Control animation
+//        ellipse.setOnMousePressed(e -> ft.pause()); 
+//        ellipse.setOnMouseReleased(e -> ft.play());
         
-        pane.getChildren().addAll(circle,rectangle, ellipse);
         
         //SequentialTransition seq = new Sequiential 
         
-        Scene scene = new Scene(pane, 500, 500);
+        //Bottom part 
+        HBox buttonBox  = new HBox(20);
+        buttonBox.setAlignment(Pos.CENTER);
+        
+        Button startBtn = new Button("Start");
+        Button resetBtn = new Button("Reset");
+        Button exitBtn = new Button("Exit");
+
+        buttonBox.getChildren().addAll(startBtn, resetBtn, exitBtn);
+
+        // Add top and bottom to the BorderPane
+        root.setTop(pane);
+        root.setBottom(buttonBox);
+        
+        Scene scene = new Scene(pane, 600, 550);
         stage.setTitle("PathTransitionDemo");
         stage.setScene(scene);
         stage.show();
+        
  }
 }
