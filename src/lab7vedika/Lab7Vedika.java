@@ -60,7 +60,6 @@ public class Lab7Vedika extends Application {
         fade.setToValue(0.2);     // fade almost out
         fade.setCycleCount(Timeline.INDEFINITE);
         fade.setAutoReverse(true);
-        fade.play();
         
         //Path transition
         PathTransition pt = new PathTransition();
@@ -111,11 +110,17 @@ public class Lab7Vedika extends Application {
         //Bottom part 
         HBox buttonBox  = new HBox(20);
         buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setStyle("-fx-padding :25;");
         
         Button startBtn = new Button("Start");
         Button resetBtn = new Button("Reset");
         Button exitBtn = new Button("Exit");
         
+        // Make buttons bigger
+        startBtn.setPrefSize(80, 30);
+        resetBtn.setPrefSize(80, 30);
+        exitBtn.setPrefSize(80, 30);
+      
         
         //the start button controls both animations 
         startBtn.setOnAction(e -> {
