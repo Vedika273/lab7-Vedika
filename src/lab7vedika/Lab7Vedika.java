@@ -31,10 +31,7 @@ public class Lab7Vedika extends Application {
     public Circle circleA;  
     public Ellipse ellipse; 
     public PathTransition pathTransitionA;
-    public FadeTransition fadeB;
-    public ScaleTransition scaleB;
-    public RotateTransition rotateB;
-    public TranslateTransition translateB;
+    public SequentialTransition seqB; 
     
     /**
      * @param args the command line arguments
@@ -54,7 +51,7 @@ public class Lab7Vedika extends Application {
        topPane.setStyle("-fx-background-color : lightblue");
         
        
-        //animation 1
+        //rectangle path for animation 1
         Rectangle rectanglePath = new Rectangle(100, 100, 300, 300);
         rectanglePath.setFill(Color.WHITE);
         rectanglePath.setStroke(Color.BLACK);
@@ -68,17 +65,17 @@ public class Lab7Vedika extends Application {
         topPane.getChildren().add(circleA);
         
         //Path transition
-        PathTransition pt = new PathTransition();
-        pt.setDuration(Duration.millis(4000));
-        pt.setPath(rectanglePath);
-        pt.setNode(circleA);
-        pt.setOrientation(PathTransition.OrientationType.
+        pathTransitionA = new PathTransition();
+        pathTransitionA.setDuration(Duration.second(4));
+        pathTransitionA.setPath(rectanglePath);
+        pathTransitionA.setNode(circleA);
+        pathTransitionA.setOrientation(PathTransition.OrientationType.
         ORTHOGONAL_TO_TANGENT);
-        pt.setCycleCount(Timeline.INDEFINITE);
-        pt.setAutoReverse(true);
+        pathTransitionA.setCycleCount(Timeline.INDEFINITE);
+        pathTransitionA.setAutoReverse(true);
         
-        //circle.setOnMousePressed(e -> pt.pause());
-        //circle.setOnMouseReleased(e -> pt.play());
+        //circle.setOnMousePressed(e -> pathTransitionA.pause());
+        //circle.setOnMouseReleased(e -> pathTransitionA.play());
     
         
         //create object B 
@@ -92,48 +89,25 @@ public class Lab7Vedika extends Application {
         topPane.getChildren().add(ellipse);
         
          // Fade
-        fadeB = new FadeTransition(Duration.seconds(3), ellipse);
-        fadeB.setFromValue(1.0);
-        fadeB.setToValue(0.2);
+        FadeTransition fade = new FadeTransition(Duration.seconds(3), ellipse);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.2);
         
         // Scale
-        scaleB = new ScaleTransition(Duration.seconds(3), ellipse);
-        scaleB.setFromX(1.0);
-        scaleB.setFromY(1.0);
-        scaleB.setToX(1.5);
-        scaleB.setToY(1.5);
+        ScaleTransition scale = new ScaleTransition(Duration.seconds(3), ellipse);
+        scale.setFromX(1.0);
+        scale.setFromY(1.0);
+        scale.setToX(1.5);
+        scale.setToY(1.5);
 
-        
-        // Scale Transition for ellipse (Object B)
-        ScaleTransition scaleEllipse = new ScaleTransition(Duration.seconds(3), ellipse);
-        scaleEllipse.setFromX(1.0);
-        scaleEllipse.setFromY(1.0);
-        scaleEllipse.setToX(1.5); // grow bigger
-        scaleEllipse.setToY(1.5);
-        scaleEllipse.setCycleCount(1);
-        scaleEllipse.setAutoReverse(false);
-        
         // Rotate
-        rotateB = new RotateTransition(Duration.seconds(3), ellipseB);
-        rotateB.setByAngle(360);
+        RotateTransition rotate = new RotateTransition(Duration.seconds(3), ellipse);
+        rotate.setByAngle(360);
 
         // Translate upward
-        translateB = new TranslateTransition(Duration.seconds(3), ellipseB);
-        translateB.setByY(-100);
- 
-        
-        // Apply a fade transition to ellipse
-//        FadeTransition ft = new FadeTransition(Duration.millis(3000), ellipse); 
-//        ft.setFromValue(1.0);
-//        ft.setToValue(0.1); 
-//        ft.setCycleCount(Timeline.INDEFINITE); 
-//        ft.setAutoReverse(true);
-//        ft.play(); // Start animation
-//        // Control animation
-//        ellipse.setOnMousePressed(e -> ft.pause()); 
-//        ellipse.setOnMouseReleased(e -> ft.play());
-        
-        
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(3), ellipse);
+        translate.setByY(-100);
+
         //SequentialTransition seq = new Sequiential 
         
         //Bottom part 
@@ -153,13 +127,13 @@ public class Lab7Vedika extends Application {
         
         //the start button controls both animations 
         startBtn.setOnAction(e -> {
-            pt.play(); //object A fade aniamation 
+            pathTransitionA.play(); //object A fade aniamation 
             fadeB.play(); //object B fade aniamation 
         });
         
         //reset button stops everything and resaets the circle positions
-        resetBtn.setOnAction( e -> {
-            pt.stop();
+        resetBtn.setOnAction(e -> {
+            pathTransitionA.stop();
             circle.setCenterX(125);
             circle.setCenterY(100);
             rectanglePath.setOpacity(1.0);
